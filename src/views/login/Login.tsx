@@ -65,6 +65,8 @@ function Login(): React.ReactElement {
       if (res.code === 0) {
         const src = res.data as unknown;
         setAvatar(src as string);
+        localStorage.setItem('avatar', src as string);
+        document.cookie=`avatar=${src as string}`;
       }
       if (res.code !== 0) {
         alert(res.msg);
@@ -82,7 +84,9 @@ function Login(): React.ReactElement {
       password: formData.password
     }).then((res: Response) => {
       if (res.code === 0) {
-        history.push('/');
+        history.push('/commonBody/message');
+        localStorage.setItem('username', formData.username);
+        document.cookie=`username=${formData.username}`;
       }
       if (res.code !== 0) {
         alert(res.msg);
@@ -129,7 +133,7 @@ function Login(): React.ReactElement {
           '_blank',
           'toolbar=no,width=800, height=600'
         );
-        history.push('/');
+        history.push('/commonBody/message');
       }
       if (res.code !== 0) {
         alert(res.msg);

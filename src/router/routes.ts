@@ -36,22 +36,13 @@ const routes: Routes[] = [
     component:'views/commonBody/index',
     children: [
       {
-        path: '/message',
-        meta: {
-          exact: true
-        }
+        path: '/commonBody/message'
       },
       {
-        path: '/more',
-        meta: {
-          exact: true
-        }
+        path: '/commonBody/more'
       },
       {
-        path: '/friendList',
-        meta: {
-          exact: true
-        }
+        path: '/commonBody/friendList'
       }
     ]
   }
