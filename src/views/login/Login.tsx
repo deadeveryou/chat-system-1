@@ -8,11 +8,8 @@ import { InputChange, Response } from '@/type/index';
 import {
   getUserAvatarSrc,
   userLogin,
-  getAuthorize,
-  authorizeLogin,
-  AuthorizeLogin
+  getAuthorize
 } from '@api/login';
-import useCallbackState from '@utils/useCallbackState';
 import './login.scss';
 
 export type FormData = {

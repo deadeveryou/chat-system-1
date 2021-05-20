@@ -7,64 +7,22 @@
  * @LastEditTime: 2021-05-13 09:12:52
  */
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-// react-redux连接器
-import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
 import renderRoutes from '@router/renderRoutes';
 // 路由数据
 import { routes } from '@router/routes';
 // 404页面
 import NotFound from '@views/not-found/NotFound';
-import { ReduxState, ReduxDispatch } from '@store/reducer';
-import { Props } from '@/type/index';
 
-function App(props: Props): React.ReactElement {
-  // redux数据通过react全局使用
-  React.store = props;
-  return (
-    <Switch>
-      <Route render={({ location }: Props) => (
-        location?.state && location?.state.is404
-          ? <NotFound />
-          : <Accessible />
-      )}
-      />
-    </Switch>
-  );
-}
-
-// 重定向到404
-const RedirectAs404 = ({ location }: Props) => <Redirect to={{ ...location, state: { is404: true } }} />;
-
-// 可访问路由以及兜底404
-function Accessible(): React.ReactElement {
+function App(): React.ReactElement {
   return (
     <Switch>
       {
         renderRoutes(routes)
       }
-      <Route component={RedirectAs404} />
+      <Route component={NotFound} />
     </Switch>
   );
 }
 
-// redux数据挂载到props上
-const mapStateToProps = (state: ReduxState) => {
-  return {
-    msg: state.msg
-  };
-};
-const mapDispatchToProps = (dispatch: ReduxDispatch) => {
-  return {
-    // 设置msg方法
-    setMsg() {
-      const action = {
-        type: 'MSG',
-        msg: '新消息'
-      };
-      dispatch(action);
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

@@ -12,7 +12,7 @@ import { cloneDeep } from 'lodash';
 
 export type ReduxState = {
   msg: string;
-  routeName:string;
+  routeName: string;
 }
 
 type ReduxAction = {
@@ -24,7 +24,7 @@ export type ReduxDispatch = (action: ReduxAction) => void;
 
 const defaultState: ReduxState = {
   msg: '消息',
-  routeName:'message'
+  routeName: 'message'
 };
 
 const reducer = (state: ReduxState = defaultState, action: ReduxAction) => {
@@ -32,7 +32,8 @@ const reducer = (state: ReduxState = defaultState, action: ReduxAction) => {
     const cloneState = cloneDeep(state);
     cloneState.msg = action.msg;
     return cloneState;
-  }else if(action.type === 'ROUTENAME'){
+  }
+  if (action.type === 'ROUTENAME') {
     const cloneState = cloneDeep(state);
     cloneState.routeName = action.routeName;
     return cloneState;

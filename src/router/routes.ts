@@ -21,7 +21,15 @@ const routes: Routes[] = [
     meta: {
       exact: true
     },
-    component: 'views/Home'
+    component: 'views/Home',
+    children: [
+      {
+        path: '/bar'
+      },
+      {
+        path: '/foo'
+      }
+    ]
   },
   {
     path: '/login',
